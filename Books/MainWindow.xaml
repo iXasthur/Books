@@ -6,7 +6,38 @@
         xmlns:local="clr-namespace:Books"
         mc:Ignorable="d"
         Title="^_^" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10">
+        <StackPanel Orientation="Vertical">
+            <DataGrid Name="BooksGrid" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
 
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" />
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                    <DataGridTextColumn Header="Author" Binding="{Binding Author}" />
+                    <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
+
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+                    
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Padding="5" BorderThickness="0" Click="EditBookButton_OnClick">EDIT</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Padding="5" BorderThickness="0" Click="DeleteBookButton_OnClick">DELETE</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Separator Margin="10"></Separator>
+            <Button Name="NewBookButton" Padding="5" Click="NewBookButton_OnClick">NEW BOOK</Button>
+        </StackPanel>
     </Grid>
 </Window>
