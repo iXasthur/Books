@@ -42,6 +42,7 @@ namespace Books
             
             try
             {
+                PriceTextBox.Text = PriceTextBox.Text.Replace(".", ",");
                 BookToEdit.Price.Value = Double.Parse(PriceTextBox.Text);
             }
             catch
@@ -52,14 +53,10 @@ namespace Books
             try
             {
                 BookToEdit.Price.Culture = (CultureInfo)CultureComboBox.SelectedItem;
-                if (BookToEdit.Price.Culture?.Name == "")
-                {
-                    BookToEdit.Price.Culture = null;
-                }
             }
             catch
             {
-                BookToEdit.Price.Culture = null;
+                BookToEdit.Price.Culture = new CultureInfo("");
             }
 
             BooksGrid.Items.Refresh();
@@ -68,7 +65,7 @@ namespace Books
         
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9,]+");
+            Regex regex = new Regex("[^0-9,.]+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

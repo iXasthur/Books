@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
+using System.Text.Json;
+using System.Xml.Serialization;
 
 namespace Books
 {
     public class BookStorage
     {
         
-        public readonly List<Book> Books = new List<Book>();
+        public List<Book> Books { get; set; } = new List<Book>();
 
         public void Add(Book book)
         {
@@ -17,6 +22,16 @@ namespace Books
         public void Remove(Book book)
         {
             Books.Remove(book);
+        }
+
+        public void Reset()
+        {
+            Books.Clear();
+        }
+
+        public string CreateJson()
+        {
+            return JsonSerializer.Serialize(this);
         }
 
         public void SortByBook()

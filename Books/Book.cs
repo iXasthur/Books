@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace Books
 {
-
+    
     public class Book: IEquatable<Book>, IComparable<Book>
     {
         public string Isbn { get; set; }
@@ -20,6 +22,16 @@ namespace Books
             Publisher = publisher;
             Date = date;
             Price = price;
+        }
+        
+        public Book()
+        {
+            Isbn = "0-000-000000";
+            Title = "NEW BOOK";
+            Author = "AUTHOR";
+            Publisher = "PUBLISHER";
+            Date = new DateTime(1970,1,1);
+            Price = new Price(new CultureInfo("en"), 0);
         }
 
         public bool Equals(Book other)

@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Books
 {
@@ -23,10 +26,8 @@ namespace Books
     /// </summary>
     public partial class MainWindow : Window
     {
-#nullable enable
-        private EditorWindow? _openedEditorWindow = null;
-#nullable disable
-        private readonly BookStorage _books = new BookStorage();
+        private EditorWindow _openedEditorWindow = null;
+        private BookStorage _books = new BookStorage();
         
         public MainWindow()
         {
@@ -34,14 +35,47 @@ namespace Books
             BooksGrid.ItemsSource = _books.Books;
         }
 
+        private void MenuSave_OnClick(object sender, RoutedEventArgs e)
+        {
+            string json = _books.CreateJson();
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JSON file (*.json)|*.json";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, json);
+                MessageBox.Show("Successfully saved to " + saveFileDialog.FileName);
+            }
+        }
+        
+        private void MenuOpen_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string json = File.ReadAllText(openFileDialog.FileName);
+                
+                _openedEditorWindow?.Close();
+                _openedEditorWindow = null;
+                
+                _books = JsonSerializer.Deserialize<BookStorage>(json);
+
+                BooksGrid.ItemsSource = _books.Books;
+                BooksGrid.Items.Refresh();
+            }
+        }
+        
+        private void MenuReset_OnClick(object sender, RoutedEventArgs e)
+        {
+            _openedEditorWindow?.Close();
+            _openedEditorWindow = null;
+            _books.Reset();
+            BooksGrid.Items.Refresh();
+        }
+
         private void NewBookButton_OnClick(object sender, RoutedEventArgs e)
         {
-            DateTime date = new DateTime(1970,1,1);
-            CultureInfo culture = new CultureInfo("en");
-            Price price = new Price(culture, 0);
-            Book book = new Book("0-000-000000", "NEW BOOK", "AUTHOR", "PUBLISHER", date, price);
-            _books.Add(book);
-            
+            _books.Add(new Book());
             BooksGrid.Items.Refresh();
         }
         
@@ -66,9 +100,9 @@ namespace Books
             try
             {
                 Book bookToDelete = (Book) BooksGrid.SelectedItem;
-                if (_openedEditorWindow?.BookToEdit == bookToDelete)
+                if (_openedEditorWindow != null && _openedEditorWindow.BookToEdit == bookToDelete)
                 {
-                    _openedEditorWindow!.Close();
+                    _openedEditorWindow.Close();
                     _openedEditorWindow = null;
                 }
                 _books.Remove(bookToDelete);
@@ -125,6 +159,7 @@ namespace Books
         protected override void OnClosed(EventArgs e)
         {
             _openedEditorWindow?.Close();
+            _openedEditorWindow = null;
             base.OnClosed(e);
         }
     }

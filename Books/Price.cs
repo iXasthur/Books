@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Books
 {
     public class Price: IComparable<Price>
     {
-#nullable enable
-        public CultureInfo? Culture { get; set; }
-#nullable disable
+        
+        // Isn't serialized
+        public CultureInfo Culture;
         public double Value { get; set; }
+
+        // For serialization
+        public string CultureName
+        {
+            get => Culture.Name;
+            set => Culture = new CultureInfo(value);
+        }
 
         public Price(CultureInfo culture, double value)
         {
             Culture = culture;
             Value = value;
+        }
+        
+        public Price()
+        {
+            Culture = null;
+            Value = 0;
         }
 
         public int CompareTo(Price other)
@@ -53,5 +68,6 @@ namespace Books
         {
             return Value.ToString(Culture) + (Culture != null ? Culture.NumberFormat.CurrencySymbol : "");
         }
+
     }
 }
