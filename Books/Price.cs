@@ -33,41 +33,49 @@ namespace Books
 
         public int CompareTo(Price other)
         {
-            int result;
-            if (Value > other.Value)
+            int result = Price.CompareByValue(this, other);
+            if (result == 0)
             {
-                result = 1;
-            }
-            else if (Value < other.Value)
-            {
-                result = -1;
-            }
-            else
-            {
-                if (Culture != null && other.Culture != null)
-                {
-                    result = string.CompareOrdinal(Culture.Name, other.Culture.Name);
-                }
-                else
-                {
-                    if (Culture != null && other.Culture == null)
-                    {
-                        result = 1;
-                    }
-                    else
-                    {
-                        result = -1;
-                    }
-                }
-                
+                result = Price.CompareByCulture(this, other);
             }
             return result;
         }
 
         public override string ToString()
         {
-            return Value.ToString(Culture) + (Culture != null ? " " + Culture.NumberFormat.CurrencySymbol : "");
+            return Value.ToString(new CultureInfo("fr")) + (Culture != null ? " " + Culture.NumberFormat.CurrencySymbol : "");
         }
 
+        static int CompareByValue(Price price0, Price price1)
+        {
+            if (price0.Value > price1.Value)
+            {
+                return 1;
+            }
+            else if (price0.Value < price1.Value)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        static int CompareByCulture(Price price0, Price price1)
+        {
+            if (price0.Culture != null && price1.Culture != null)
+            {
+                return string.CompareOrdinal(price0.Culture.Name, price1.Culture.Name);
+            }
+            else if (price0.Culture != null && price1.Culture == null)
+            {
+                return 1;
+            } else
+            {
+                return -1;
+            }
+        }
+        
     }
 }

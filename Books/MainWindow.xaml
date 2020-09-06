@@ -48,7 +48,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     
-                    <DataGridTextColumn Header="Author" Binding="{Binding Author}">
+                    <DataGridTextColumn Header="Pages" Binding="{Binding PagesAmount}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
@@ -57,7 +57,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     
-                    <DataGridTextColumn Header="Pages" Binding="{Binding PagesAmount}">
+                    <DataGridTextColumn Header="Author" Binding="{Binding Author}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
