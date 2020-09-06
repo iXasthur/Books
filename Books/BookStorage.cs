@@ -51,7 +51,7 @@ namespace Books
         
         public void SortByAuthor()
         {
-            Books.Sort(Book.CompareByTitle);
+            Books.Sort(Book.CompareByAuthor);
         }
         
         public void SortByPublisher()
