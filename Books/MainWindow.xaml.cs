@@ -1,22 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Books.BookStorage;
 using Microsoft.Win32;
 
 namespace Books
@@ -24,20 +10,20 @@ namespace Books
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private EditorWindow _openedEditorWindow = null;
-        private BookStorage _books = new BookStorage();
+        private BookStorage.BookStorage _bookStorage = new BookStorage.BookStorage();
         
         public MainWindow()
         {
             InitializeComponent();
-            BooksGrid.ItemsSource = _books.Books;
+            BooksGrid.ItemsSource = _bookStorage.Books;
         }
 
         private void MenuSave_OnClick(object sender, RoutedEventArgs e)
         {
-            string json = _books.CreateJson();
+            string json = _bookStorage.CreateJson();
             
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "JSON file (*.json)|*.json";
@@ -57,7 +43,7 @@ namespace Books
                 
                 try
                 {
-                    _books = JsonSerializer.Deserialize<BookStorage>(json);
+                    _bookStorage = JsonSerializer.Deserialize<BookStorage.BookStorage>(json);
                 }
                 catch
                 {
@@ -68,7 +54,7 @@ namespace Books
                 _openedEditorWindow?.Close();
                 _openedEditorWindow = null;
                 
-                BooksGrid.ItemsSource = _books.Books;
+                BooksGrid.ItemsSource = _bookStorage.Books;
                 BooksGrid.Items.Refresh();
             }
         }
@@ -77,13 +63,13 @@ namespace Books
         {
             _openedEditorWindow?.Close();
             _openedEditorWindow = null;
-            _books.Reset();
+            _bookStorage.Reset();
             BooksGrid.Items.Refresh();
         }
 
         private void NewBookButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.Add(new Book());
+            _bookStorage.Add(new Book());
             BooksGrid.Items.Refresh();
         }
         
@@ -113,7 +99,7 @@ namespace Books
                     _openedEditorWindow.Close();
                     _openedEditorWindow = null;
                 }
-                _books.Remove(bookToDelete);
+                _bookStorage.Remove(bookToDelete);
                 BooksGrid.Items.Refresh();
             }
             catch
@@ -124,49 +110,49 @@ namespace Books
 
         private void MenuSortBook_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByBook();
+            _bookStorage.SortByBook();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortIsbn_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByIsbn();
+            _bookStorage.SortByIsbn();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortTitle_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByTitle();
+            _bookStorage.SortByTitle();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortPages_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByPages();
+            _bookStorage.SortByPages();
             BooksGrid.Items.Refresh();
         }
 
         private void MenuSortAuthor_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByAuthor();
+            _bookStorage.SortByAuthor();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortPublisher_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByPublisher();
+            _bookStorage.SortByPublisher();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortDate_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByDate();
+            _bookStorage.SortByDate();
             BooksGrid.Items.Refresh();
         }
         
         private void MenuSortPrice_OnClick(object sender, RoutedEventArgs e)
         {
-            _books.SortByPrice();
+            _bookStorage.SortByPrice();
             BooksGrid.Items.Refresh();
         }
         

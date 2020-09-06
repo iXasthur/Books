@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 
-namespace Books
+namespace Books.BookStorage.Economics
 {
     public class Price: IComparable<Price>
     {

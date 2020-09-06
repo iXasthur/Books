@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Json;
+﻿using System.Collections.Generic;
 using System.Text.Json;
-using System.Xml.Serialization;
 
-namespace Books
+namespace Books.BookStorage
 {
     public class BookStorage
     {

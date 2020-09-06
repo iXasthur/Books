@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.Serialization;
+using Books.BookStorage.Economics;
 
-namespace Books
+namespace Books.BookStorage
 {
     
     public class Book: IEquatable<Book>, IComparable<Book>
