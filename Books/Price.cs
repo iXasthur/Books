@@ -18,7 +18,35 @@ namespace Books
 
         public int CompareTo(Price other)
         {
-            throw new NotImplementedException();
+            int result;
+            if (Value > other.Value)
+            {
+                result = 1;
+            }
+            else if (Value < other.Value)
+            {
+                result = -1;
+            }
+            else
+            {
+                if (Culture != null && other.Culture != null)
+                {
+                    result = string.CompareOrdinal(Culture.Name, other.Culture.Name);
+                }
+                else
+                {
+                    if (Culture != null && other.Culture == null)
+                    {
+                        result = 1;
+                    }
+                    else
+                    {
+                        result = -1;
+                    }
+                }
+                
+            }
+            return result;
         }
 
         public override string ToString()
