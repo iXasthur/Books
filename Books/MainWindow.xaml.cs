@@ -39,7 +39,7 @@ namespace Books
             }
             
             DateTime date = new DateTime(1970,1,1);
-            CultureInfo culture = new CultureInfo("en-US");
+            CultureInfo culture = new CultureInfo("en");
             Price price = new Price(culture, 0);
             Book book = new Book("0-000-000000", "NEW BOOK", "AUTHOR", "PUBLISHER", date, price);
             _books.Add(book);

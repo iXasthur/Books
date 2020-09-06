@@ -5,7 +5,9 @@ namespace Books
 {
     public class Price
     {
-        public CultureInfo Culture { get; set; }
+#nullable enable
+        public CultureInfo? Culture { get; set; }
+#nullable disable
         public double Value { get; set; }
 
         public Price(CultureInfo culture, double value)
@@ -16,7 +18,7 @@ namespace Books
 
         public override string ToString()
         {
-            return Value.ToString(Culture) + Culture.NumberFormat.CurrencySymbol;
+            return Value.ToString(Culture) + (Culture != null ? Culture.NumberFormat.CurrencySymbol : "");
         }
     }
 }
