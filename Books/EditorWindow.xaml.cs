@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Books
 {
-    public partial class EditorWindow : Window
+    public partial class EditorWindow
     {
 
         public readonly Book BookToEdit;
@@ -48,6 +48,7 @@ namespace Books
             {
                 BookToEdit.Price.Value = 0;
             }
+            
             try
             {
                 BookToEdit.Price.Culture = (CultureInfo)CultureComboBox.SelectedItem;

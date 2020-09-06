@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Books
 {
-    public class Price
+    public class Price: IComparable<Price>
     {
 #nullable enable
         public CultureInfo? Culture { get; set; }
@@ -14,6 +14,11 @@ namespace Books
         {
             Culture = culture;
             Value = value;
+        }
+
+        public int CompareTo(Price other)
+        {
+            throw new NotImplementedException();
         }
 
         public override string ToString()
