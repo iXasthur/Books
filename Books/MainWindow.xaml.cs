@@ -26,7 +26,7 @@ namespace Books
 #nullable enable
         private EditorWindow? _openedEditorWindow = null;
 #nullable disable
-        private readonly BookList _books = new BookList();
+        private readonly BookStorage _books = new BookStorage();
         
         public MainWindow()
         {
@@ -57,7 +57,7 @@ namespace Books
             }
             catch
             {
-                
+                MessageBox.Show("Error opening editor!");
             }
         }
         
@@ -76,7 +76,7 @@ namespace Books
             }
             catch
             {
-                
+                MessageBox.Show("Error deleting book!");
             }
         }
 
