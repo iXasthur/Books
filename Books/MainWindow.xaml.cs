@@ -36,12 +36,6 @@ namespace Books
 
         private void NewBookButton_OnClick(object sender, RoutedEventArgs e)
         {
-            BooksGrid.Items.SortDescriptions.Clear();
-            foreach (var column in BooksGrid.Columns)
-            {
-                column.SortDirection = null;
-            }
-            
             DateTime date = new DateTime(1970,1,1);
             CultureInfo culture = new CultureInfo("en");
             Price price = new Price(culture, 0);
@@ -84,6 +78,54 @@ namespace Books
             {
                 
             }
+        }
+
+        private void MenuSortBook_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByBook();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortIsbn_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByIsbn();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortTitle_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByTitle();
+            BooksGrid.Items.Refresh();
+        }
+
+        private void MenuSortAuthor_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByAuthor();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortPublisher_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByPublisher();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortDate_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByDate();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortPrice_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByPrice();
+            BooksGrid.Items.Refresh();
+        }
+        
+        protected override void OnClosed(EventArgs e)
+        {
+            _openedEditorWindow?.Close();
+            base.OnClosed(e);
         }
     }
 }

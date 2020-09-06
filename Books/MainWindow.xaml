@@ -6,9 +6,27 @@
         xmlns:local="clr-namespace:Books"
         mc:Ignorable="d"
         Title="^_^" Height="450" Width="800">
-    <Grid Margin="10">
+    <Grid>
         <StackPanel Orientation="Vertical">
-            <DataGrid Name="BooksGrid" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="False" Padding="10">
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="File" Padding="10,5,10,5" Margin="10,0,0,0">
+                    <MenuItem Header="Save"/>
+                    <MenuItem Header="Open"/>
+                    <Separator/>
+                    <MenuItem Header="Reset"/>
+                </MenuItem>
+                <MenuItem Header="Sort" Padding="10,5,10,5">
+                    <MenuItem Name="MenuSortBook" Header="By Book" Click="MenuSortBook_OnClick"/>
+                    <MenuItem Name="MenuSortIsbn" Header="By ISBN" Click="MenuSortIsbn_OnClick"/>
+                    <MenuItem Name="MenuSortTitle" Header="By Tile" Click="MenuSortTitle_OnClick"/>
+                    <MenuItem Name="MenuSortAuthor" Header="By Author" Click="MenuSortAuthor_OnClick"/>
+                    <MenuItem Name="MenuSortPublisher" Header="By Publisher" Click="MenuSortPublisher_OnClick"/>
+                    <MenuItem Name="MenuSortDate" Header="By Date" Click="MenuSortDate_OnClick"/>
+                    <MenuItem Name="MenuSortPrice" Header="By Price" Click="MenuSortPrice_OnClick"/>
+                </MenuItem>
+            </Menu>
+            
+            <DataGrid Name="BooksGrid" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="False" Padding="10" Margin="10,10,10,0">
                 <DataGrid.Columns>
                     
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}">
@@ -89,8 +107,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Separator Margin="10"></Separator>
-            <Button Name="NewBookButton" Padding="5" Click="NewBookButton_OnClick">NEW BOOK</Button>
+            <Separator Margin="20,10,20,10"></Separator>
+            <Button Name="NewBookButton" Padding="5" Margin="10,0,10,0" Click="NewBookButton_OnClick">NEW BOOK</Button>
         </StackPanel>
     </Grid>
 </Window>
