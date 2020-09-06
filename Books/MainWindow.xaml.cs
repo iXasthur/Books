@@ -26,7 +26,7 @@ namespace Books
             var json = _bookStorage.CreateJson();
 
             var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "JSON file (*.json)|*.json";
+            saveFileDialog.Filter = "JSON file (*.json)|*.json|Any file (*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, json);
