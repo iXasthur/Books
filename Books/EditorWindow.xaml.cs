@@ -10,58 +10,58 @@ namespace Books
     public partial class EditorWindow : Window
     {
 
-        private readonly Book _bookToEdit;
-        private readonly DataGrid _booksGrid;
+        public readonly Book BookToEdit;
+        public readonly DataGrid BooksGrid;
 
         public EditorWindow(Book bookToEdit, DataGrid booksGrid)
         {
             InitializeComponent();
 
-            _bookToEdit = bookToEdit;
-            _booksGrid = booksGrid;
+            BookToEdit = bookToEdit;
+            BooksGrid = booksGrid;
 
             CultureComboBox.Text = "Unknown";
             CultureComboBox.ItemsSource = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
-            CultureComboBox.SelectedItem = _bookToEdit.Price.Culture;
+            CultureComboBox.SelectedItem = BookToEdit.Price.Culture;
 
-            IsbnTextBox.Text = _bookToEdit.Isbn;
-            TitleTextBox.Text = _bookToEdit.Title;
-            AuthorTextBox.Text = _bookToEdit.Author;
-            PublisherTextBox.Text = _bookToEdit.Publisher;
-            DateDatePicker.SelectedDate = _bookToEdit.Date;
-            PriceTextBox.Text = _bookToEdit.Price.Value.ToString();
+            IsbnTextBox.Text = BookToEdit.Isbn;
+            TitleTextBox.Text = BookToEdit.Title;
+            AuthorTextBox.Text = BookToEdit.Author;
+            PublisherTextBox.Text = BookToEdit.Publisher;
+            DateDatePicker.SelectedDate = BookToEdit.Date;
+            PriceTextBox.Text = BookToEdit.Price.Value.ToString(new CultureInfo("en"));
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            _bookToEdit.Isbn = IsbnTextBox.Text;
-            _bookToEdit.Title = TitleTextBox.Text;
-            _bookToEdit.Author = AuthorTextBox.Text;
-            _bookToEdit.Publisher = PublisherTextBox.Text;
-            _bookToEdit.Date = DateDatePicker.SelectedDate;
+            BookToEdit.Isbn = IsbnTextBox.Text;
+            BookToEdit.Title = TitleTextBox.Text;
+            BookToEdit.Author = AuthorTextBox.Text;
+            BookToEdit.Publisher = PublisherTextBox.Text;
+            BookToEdit.Date = DateDatePicker.SelectedDate;
             
             try
             {
-                _bookToEdit.Price.Value = Double.Parse(PriceTextBox.Text);
+                BookToEdit.Price.Value = Double.Parse(PriceTextBox.Text);
             }
             catch
             {
-                _bookToEdit.Price.Value = 0;
+                BookToEdit.Price.Value = 0;
             }
             try
             {
-                _bookToEdit.Price.Culture = (CultureInfo)CultureComboBox.SelectedItem;
-                if (_bookToEdit.Price.Culture?.Name == "")
+                BookToEdit.Price.Culture = (CultureInfo)CultureComboBox.SelectedItem;
+                if (BookToEdit.Price.Culture?.Name == "")
                 {
-                    _bookToEdit.Price.Culture = null;
+                    BookToEdit.Price.Culture = null;
                 }
             }
             catch
             {
-                _bookToEdit.Price.Culture = null;
+                BookToEdit.Price.Culture = null;
             }
 
-            _booksGrid.Items.Refresh();
+            BooksGrid.Items.Refresh();
             Close();
         }
         

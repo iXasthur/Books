@@ -22,6 +22,9 @@ namespace Books
     /// </summary>
     public partial class MainWindow : Window
     {
+#nullable enable
+        private EditorWindow? _openedEditorWindow = null;
+#nullable disable
         private readonly BookList _books = new BookList();
         
         public MainWindow()
@@ -53,6 +56,8 @@ namespace Books
             {
                 Book bookToEdit = (Book) BooksGrid.SelectedItem;
                 EditorWindow editorWindow = new EditorWindow(bookToEdit, BooksGrid);
+                _openedEditorWindow?.Close();
+                _openedEditorWindow = editorWindow;
                 editorWindow.Show();
             }
             catch
@@ -66,6 +71,11 @@ namespace Books
             try
             {
                 Book bookToDelete = (Book) BooksGrid.SelectedItem;
+                if (_openedEditorWindow?.BookToEdit == bookToDelete)
+                {
+                    _openedEditorWindow!.Close();
+                    _openedEditorWindow = null;
+                }
                 _books.Remove(bookToDelete);
                 BooksGrid.Items.Refresh();
             }
