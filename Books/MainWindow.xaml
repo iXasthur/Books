@@ -3,103 +3,103 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Books"
         mc:Ignorable="d"
         Title="^_^" Height="600" Width="1000">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="File" Padding="10,5,10,5" Margin="10,0,0,0">
-                    <MenuItem Name="MenuSave" Header="Save" Click="MenuSave_OnClick"/>
-                    <MenuItem Name="MenuOpen" Header="Open" Click="MenuOpen_OnClick"/>
-                    <Separator/>
-                    <MenuItem Name="MenuReset" Header="Reset" Click="MenuReset_OnClick"/>
+                    <MenuItem Name="MenuSave" Header="Save" Click="MenuSave_OnClick" />
+                    <MenuItem Name="MenuOpen" Header="Open" Click="MenuOpen_OnClick" />
+                    <Separator />
+                    <MenuItem Name="MenuReset" Header="Reset" Click="MenuReset_OnClick" />
                 </MenuItem>
                 <MenuItem Header="Sort" Padding="10,5,10,5">
-                    <MenuItem Name="MenuSortBook" Header="By Book" Click="MenuSortBook_OnClick"/>
-                    <MenuItem Name="MenuSortIsbn" Header="By ISBN" Click="MenuSortIsbn_OnClick"/>
-                    <MenuItem Name="MenuSortTitle" Header="By Tile" Click="MenuSortTitle_OnClick"/>
-                    <MenuItem Name="MenuSortPages" Header="By Pages" Click="MenuSortPages_OnClick"/>
-                    <MenuItem Name="MenuSortAuthor" Header="By Author" Click="MenuSortAuthor_OnClick"/>
-                    <MenuItem Name="MenuSortPublisher" Header="By Publisher" Click="MenuSortPublisher_OnClick"/>
-                    <MenuItem Name="MenuSortDate" Header="By Date" Click="MenuSortDate_OnClick"/>
-                    <MenuItem Name="MenuSortPrice" Header="By Price" Click="MenuSortPrice_OnClick"/>
+                    <MenuItem Name="MenuSortBook" Header="By Book" Click="MenuSortBook_OnClick" />
+                    <MenuItem Name="MenuSortIsbn" Header="By ISBN" Click="MenuSortIsbn_OnClick" />
+                    <MenuItem Name="MenuSortTitle" Header="By Tile" Click="MenuSortTitle_OnClick" />
+                    <MenuItem Name="MenuSortPages" Header="By Pages" Click="MenuSortPages_OnClick" />
+                    <MenuItem Name="MenuSortAuthor" Header="By Author" Click="MenuSortAuthor_OnClick" />
+                    <MenuItem Name="MenuSortPublisher" Header="By Publisher" Click="MenuSortPublisher_OnClick" />
+                    <MenuItem Name="MenuSortDate" Header="By Date" Click="MenuSortDate_OnClick" />
+                    <MenuItem Name="MenuSortPrice" Header="By Price" Click="MenuSortPrice_OnClick" />
                 </MenuItem>
             </Menu>
-            
-            <DataGrid Name="BooksGrid" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="False" Padding="10" Margin="10,10,10,0">
+
+            <DataGrid Name="BooksGrid" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="False"
+                      Padding="10" Margin="10,10,10,0">
                 <DataGrid.Columns>
-                    
+
                     <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Pages" Binding="{Binding PagesAmount}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Author" Binding="{Binding Author}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    
+
                     <!-- <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}"/> -->
                     <!-- <DataGridTextColumn Header="Title" Binding="{Binding Title}"/> -->
                     <!-- <DataGridTextColumn Header="Author" Binding="{Binding Author}"/> -->
                     <!-- <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}"/> -->
                     <!-- <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}"/> -->
                     <!-- <DataGridTextColumn Header="Price" Binding="{Binding Price}"/> -->
-                    
+
                     <DataGridTemplateColumn CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -107,7 +107,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                
+
                     <DataGridTemplateColumn CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -117,7 +117,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Separator Margin="20,10,20,10"></Separator>
+            <Separator Margin="20,10,20,10" />
             <Button Name="NewBookButton" Padding="5" Margin="10,0,10,0" Click="NewBookButton_OnClick">NEW BOOK</Button>
         </StackPanel>
     </Grid>
