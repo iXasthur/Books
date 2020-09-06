@@ -66,7 +66,7 @@ namespace Books
 
         public override string ToString()
         {
-            return Value.ToString(Culture) + (Culture != null ? Culture.NumberFormat.CurrencySymbol : "");
+            return Value.ToString(Culture) + (Culture != null ? " " + Culture.NumberFormat.CurrencySymbol : "");
         }
 
     }

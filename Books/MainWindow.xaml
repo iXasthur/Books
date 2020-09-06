@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Books"
         mc:Ignorable="d"
-        Title="^_^" Height="450" Width="800">
+        Title="^_^" Height="600" Width="1000">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Menu VerticalAlignment="Top">
@@ -19,6 +19,7 @@
                     <MenuItem Name="MenuSortBook" Header="By Book" Click="MenuSortBook_OnClick"/>
                     <MenuItem Name="MenuSortIsbn" Header="By ISBN" Click="MenuSortIsbn_OnClick"/>
                     <MenuItem Name="MenuSortTitle" Header="By Tile" Click="MenuSortTitle_OnClick"/>
+                    <MenuItem Name="MenuSortPages" Header="By Pages" Click="MenuSortPages_OnClick"/>
                     <MenuItem Name="MenuSortAuthor" Header="By Author" Click="MenuSortAuthor_OnClick"/>
                     <MenuItem Name="MenuSortPublisher" Header="By Publisher" Click="MenuSortPublisher_OnClick"/>
                     <MenuItem Name="MenuSortDate" Header="By Date" Click="MenuSortDate_OnClick"/>
@@ -48,6 +49,15 @@
                     </DataGridTextColumn>
                     
                     <DataGridTextColumn Header="Author" Binding="{Binding Author}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="5"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    
+                    <DataGridTextColumn Header="Pages" Binding="{Binding PagesAmount}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="HorizontalAlignment" Value="Center" />

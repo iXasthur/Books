@@ -55,11 +55,19 @@ namespace Books
             {
                 string json = File.ReadAllText(openFileDialog.FileName);
                 
+                try
+                {
+                    _books = JsonSerializer.Deserialize<BookStorage>(json);
+                }
+                catch
+                {
+                    MessageBox.Show("Invalid file format");
+                    return;
+                }
+
                 _openedEditorWindow?.Close();
                 _openedEditorWindow = null;
                 
-                _books = JsonSerializer.Deserialize<BookStorage>(json);
-
                 BooksGrid.ItemsSource = _books.Books;
                 BooksGrid.Items.Refresh();
             }
@@ -129,6 +137,12 @@ namespace Books
         private void MenuSortTitle_OnClick(object sender, RoutedEventArgs e)
         {
             _books.SortByTitle();
+            BooksGrid.Items.Refresh();
+        }
+        
+        private void MenuSortPages_OnClick(object sender, RoutedEventArgs e)
+        {
+            _books.SortByPages();
             BooksGrid.Items.Refresh();
         }
 

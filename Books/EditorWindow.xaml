@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Books"
         mc:Ignorable="d"
-        Title="Book Editor" Height="310" Width="300">
+        Title="Book Editor" Height="350" Width="350">
     <Grid Margin="10">
         <StackPanel>
             <DockPanel>
@@ -16,6 +16,11 @@
             <DockPanel>
                 <TextBlock TextAlignment="Left" Padding="5" Width="60">Title</TextBlock>
                 <TextBox Name="TitleTextBox" Padding="5" Margin="5,0,0,0"/>
+            </DockPanel>
+            
+            <DockPanel>
+                <TextBlock TextAlignment="Left" Padding="5" Width="60">Pages</TextBlock>
+                <TextBox Name="PagesTextBox" Padding="5" Margin="5,0,0,0" PreviewTextInput="IntegerValidationTextBox"/>
             </DockPanel>
             
             <DockPanel>
@@ -35,7 +40,7 @@
             
             <DockPanel>
                 <TextBlock TextAlignment="Left" Padding="5" Width="60">Price</TextBlock>
-                <TextBox Name="PriceTextBox" Padding="5" Margin="5,0,0,0" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Name="PriceTextBox" Padding="5" Margin="5,0,0,0" PreviewTextInput="DoubleValidationTextBox"/>
             </DockPanel>
             
             <DockPanel>

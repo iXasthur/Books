@@ -49,6 +49,11 @@ namespace Books
             Books.Sort(Book.CompareByTitle);
         }
         
+        public void SortByPages()
+        {
+            Books.Sort(Book.CompareByPagesAmount);
+        }
+        
         public void SortByAuthor()
         {
             Books.Sort(Book.CompareByAuthor);

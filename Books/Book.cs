@@ -9,15 +9,17 @@ namespace Books
     {
         public string Isbn { get; set; }
         public string Title { get; set; }
+        public int PagesAmount { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
         public DateTime? Date { get; set; }
         public Price Price { get; set; }
 
-        public Book(string isbn, string title, string author, string publisher, DateTime date, Price price)
+        public Book(string isbn, string title, int pagesAmount, string author, string publisher, DateTime date, Price price)
         {
             Isbn = isbn;
             Title = title;
+            PagesAmount = pagesAmount;
             Author = author;
             Publisher = publisher;
             Date = date;
@@ -28,6 +30,7 @@ namespace Books
         {
             Isbn = "0-000-000000";
             Title = "NEW BOOK";
+            PagesAmount = 0;
             Author = "AUTHOR";
             Publisher = "PUBLISHER";
             Date = new DateTime(1970,1,1);
@@ -88,6 +91,22 @@ namespace Books
         public static int CompareByAuthor(Book book0, Book book1)
         {
             return string.CompareOrdinal(book0.Author, book1.Author);
+        }
+        
+        public static int CompareByPagesAmount(Book book0, Book book1)
+        {
+            if (book0.PagesAmount > book1.PagesAmount)
+            {
+                return 1;
+            }
+            else if (book0.PagesAmount < book1.PagesAmount)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
         }
         
         public static int CompareByPublisher(Book book0, Book book1)
