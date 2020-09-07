@@ -9,7 +9,7 @@
         <StackPanel Orientation="Vertical">
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="File" Padding="10,5,10,5" Margin="10,0,0,0">
-                    <MenuItem Name="MenuSave" Header="Save" Click="MenuSave_OnClick" />
+                    <MenuItem Name="MenuSave" Header="Save as" Click="MenuSave_OnClick" />
                     <MenuItem Name="MenuOpen" Header="Open" Click="MenuOpen_OnClick" />
                     <Separator />
                     <MenuItem Name="MenuReset" Header="Reset" Click="MenuReset_OnClick" />
